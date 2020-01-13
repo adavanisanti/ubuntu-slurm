@@ -32,8 +32,8 @@ cd $INSTALL_DIR
 cp ubuntu-slurm/slurmdbd.service /etc/systemd/system/
 cp ubuntu-slurm/slurmctld.service /etc/systemd/system/
 mkdir -p /mnt/resource/slurm/
-chmod +x slurm.conf.sh
-bash slurm.conf.sh >> /etc/slurm/slurm.conf
+chmod +x ubuntu-slurm/slurm.conf.sh
+bash ubuntu-slurm/slurm.conf.sh >> /etc/slurm/slurm.conf
 echo "NodeName=dummy-compute" >> /mnt/resource/slurm/cluster.conf
 
 systemctl enable slurmctld
