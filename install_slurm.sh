@@ -1,7 +1,7 @@
 #!/bin/bash
 INSTALL_DIR=/tmp
 apt-get update
-apt-get install -y git gcc make ruby ruby-dev libpam0g-dev libmariadb-client-lgpl-dev libmysqlclient-dev
+apt-get install -y git gcc make ruby ruby-dev libpam0g-dev libmariadb-client-lgpl-dev libmysqlclient-dev nfs-kernel-server nmap pdsh screen git curl libnss3 cifs-utils
 gem install fpm
 apt-get install -y libmunge-dev libmunge2 munge
 systemctl enable munge
@@ -37,6 +37,10 @@ bash ubuntu-slurm/slurm.conf.sh >> /etc/slurm/slurm.conf
 echo "NodeName=dummy-compute" >> /mnt/resource/slurm/cluster.conf
 
 systemctl enable slurmctld
-systemctl start slurmctld
+
+cp $INSTALL_DIR/ubuntu-slurm/slurmd.service /etc/systemd/system/
+systemctl enable slurmd
+
+
 
 
